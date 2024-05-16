@@ -1,1 +1,0 @@
-showMember.html에서 멤버보기 링크를 클릭하면 showMember.jsp에서 등록되어 있는 멤버를 보여주시오.

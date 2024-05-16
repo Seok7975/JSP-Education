@@ -1,5 +1,0 @@
-1. getTest.html에서 이름과 비밀번호를 입력받아 getTest.jsp에서 이름과 비밀번호를 출력하시오. get방법으로 하시오.
-2. getTest2.html에서 getTest2라는 링크를 클릭하면 getTest2.jsp로 이동해서 이름과 비밀번호를 출력하시오.
-이름과 비밀번호는 url에 같이 보내시오.(get방법)
-3. postTest.html에서 이름과 비밀번호를 입력받아 postTest.jsp에서 출력하시오. post방법으로 하시오.
-4. postTest2.html에서 이름을 입력받고, 숨김정보로 007이라는 값을 postTest2.jsp로 보내시오. 그리고 이름과 숨김정보를 출력하시오.
