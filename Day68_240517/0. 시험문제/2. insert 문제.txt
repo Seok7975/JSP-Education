@@ -1,0 +1,1 @@
+Input.html에서 이름, 아이디, 비밀번호를 입력받아서 InputOK.jsp에서 저장을 하시오. 저장이 성공적으로 이루어 졌으면 welcome.html로 이동하고 실패했으면 fail.html로 이동하시오.
