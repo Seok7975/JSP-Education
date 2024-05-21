@@ -1,0 +1,32 @@
+sendRedirect.jsp를 만들고 request 객체에 속성이름을 'name'으로 주고 값을 '홍길동'으로 준다. 
+그리고 responese.sendRedirect로 result.jsp로 이동하여 name의 값을 출력한다.
+
+requestDispatcher.jsp 파일을 만들고 request 객체에 속성이름을 'name'으로 주고 값을 
+'홍길동'으로 준다. 그리고 RequestDispatcher를 통해 result.jsp로 이동하여 name의 값을 출력한다.
+
+
+
+
+영역 : page 
+영역객체 : pageContext
+해당 페이지가 클라이언트에 서비스를 제공하는 동안에만 유효
+(서블릿 인스턴스의 _jspServicer()메서드가 실행되는 동안에만 유효)
+
+영역 : request
+영역객체 : request
+클라이언트의 요청이 처리되는 동안 유효
+(포워딩 또는 include를 이용하는 경우 여러개의 페이지에서도 요청정보가 계속 유지되므로
+request영역의 속성을 여러페이지에서 공유할 수 있다.)
+
+영역 : session
+영역객체 : session
+세션이 유지되는 동안 유효
+(하나의 브라우저에 1개의 세션이 생성되므로 같은 웹브라우저 내에서 실행되는 페이지들이
+속성을 공유할 수 있다.)
+
+영역 : application
+영역객체 : application
+웹 애플리케이션이 실행되고 있는 동안 유효
+(웹 컨테이너에서 해당 어플리케이션은 오직 하나만이 실행되므로
+4가지 영역중 가장 큰 영역에 해당)
+
