@@ -1,0 +1,7 @@
+SubmitTest.jsp를 만들자
+SubmitTestOK.jsp를 만들자.
+
+SubmitTest.jsp에서 이름을 입력 받아서
+SubmitTestOK.jsp에서 출력하자.
+
+SubmitTest.jsp에서 유효성 체크를 자바스크립트로 하자.

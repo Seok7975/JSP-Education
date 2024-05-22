@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form name="myForm" method="post" action="hello.htm" onsubmit="return validation()">
+	비밀번호 : <input type="password" name="password"><br>
+	비밀번호확인 : <input type="password" name="passwordChk"><br>
+	<input type="submit" value="전송">
+</form>
+<script>
+	function validation()
+	{
+	    var password = document.forms["myForm"]["password"].value;
+	    var passwordChk = document.forms["myForm"]["passwordChk"].value;
+
+        if(password ==="" || passwordChk === ""){
+            alert("비밀번호를 입력해 주세요.");
+	        return false;            
+        }
+	    if (password != passwordChk) {
+	       alert("비밀번호가 일치하지 않습니다.");
+	       return false;
+	    } 
+	}
+</script>
+</body>
+</html>

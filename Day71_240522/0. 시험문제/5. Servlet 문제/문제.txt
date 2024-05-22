@@ -1,0 +1,2 @@
+1_1.png 1_2.png를 보고 두개다 서블릿으로 구현해 보시오.
+select에는 http, ftp, smtp, pop이 있음.

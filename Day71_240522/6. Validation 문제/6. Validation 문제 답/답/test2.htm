@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+</head>
+<body>
+<form name="myForm" method="post" action="hello.htm" onsubmit="return validation()">
+	<input type="text" name="number">
+	<input type="submit" value="전송">
+</form>
+<script>
+	function validation()
+	{
+	    var x = document.forms["myForm"]["number"].value;
+
+	    if (isNaN(x) || x < 1 || x > 10 || x=="") {
+	       alert("Input not valid");
+	       return false;
+	    } else {
+	        alert("Input OK");
+	        return true;
+	    }
+	}
+</script>
+</body>
+</html>

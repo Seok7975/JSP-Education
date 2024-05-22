@@ -1,0 +1,5 @@
+SessionTest1 세션설정
+SessionTest2 서블릿 세션설정
+SessionTest3 세션 유효시간
+SessionTest4 세션 유효시간후 자동이동
+SessionTest5 세션이 없을 경우 접근하지 못하게.
