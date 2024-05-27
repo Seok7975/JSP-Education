@@ -1,0 +1,62 @@
+쿠키
+<Cookie>
+
+쿠키란, 클라이언트 측에서 서버에 데이터를 요청하고 난 후 연결이 끊어졌을 때, 
+정보를 지속적으로 유지하기 위한 수단이다.
+
+서버에서 생성되며, 클라이언트 측에 특정 정보를 저장시킨다.
+
+4kB 정도의 크기이며, 300개까지의 데이터 정보를 가질 수 있다. 
+
+로컬에 물리적으로 text file 을 저장하는 방식이기 때문에, 해킹 등 보안의 문제가 일어날 수 있다는 점이 있긴 하지만, 중요한 개념!
+
+<cookie 의 생성 과정>
+
+쿠키 생성 -> 속성 설정 -> response 객체에 쿠키 탑재
+
+1. 쿠키의 문법
+
+-Set : setMaxAge(), setPath(), setValue(), setVersion()
+-Get : getMaxAge(), getName(), getPath(), getValue(), getVersion()
+
+setCookie.jsp
+<%
+Cookie cookie = new Cookie("id", "hong");
+cookie.setMaxAge(60*60);	// 초 단위
+response.addCookie(cookie); // 쿠키 추가
+%>
+
+getCookie.jsp
+<%
+    Cookie[] cookies = request.getCookies(); //쿠키를 받아온다.
+    for(int i = 0 ; cookies != null && i < cookies.length; i++){
+        String str = cookies[i].getName();
+        if(str.equals("id"){
+            out.println("cookies[" + i  + "] name = " + cookies[i].getName());
+            out.println("cookies[" + i  + "] value = " + cookies[i].getValue());
+        }
+    }
+%>
+
+쿠키를 받아오고, 쿠키의 길이만큼 이름값을 검사해 줄 수도 있다.
+
+delCookie.jsp
+
+<%
+Cookie[] cookies = request.getCookies();
+    for(int i = 0 ; cookies != null && i < cookies.length; i++){
+        String str = cookies[i].getName();
+        if(str.equals("id"){
+            cookies[i].setMaxAge(0); //0 으로 max age 를 설정해줘서 삭제해준다.
+            response.addCookie(cookies[i]);
+        }
+}
+%>
+
+쿠키의 max age 를 0 으로 설정하면 삭제가 된다. 마지막에 이 변동사항을 다시 response 객체를 통해 갱신해 주는 것을 잊지 않아야 한다.
+
+
+이후 따로 테스트 페이지를 만들어서 확인해보면, 아무것도 뜨지 않는다.
+
+이것을 활용해서 로그인 사이트를 만들 수도 있다
+

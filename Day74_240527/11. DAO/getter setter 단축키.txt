@@ -1,0 +1,2 @@
+Getter, Setter Method 
+alt + shift + s, r

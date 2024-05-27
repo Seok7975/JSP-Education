@@ -1,0 +1,10 @@
+HttpSession session = request.getSession(false);
+위에서 HttpSession session = request.getSession(); 두 메소드의 차이는?
+getSession(), getSession(true)와 getSession(false)의 차이점
+둘 다 세션을 받아올 때 사용되지만 이 둘에는 차이점이 있다. getSession(), getSession(true)는 세션이 이미 있는지 확인을 하여, 이미 있다면 그 세션을 반환시키고, 없으면 새로운 세션을 생성한다. 이에 반면 getSession(false)는 세션이 있다면 그 세션을 리턴하지만 세션이 존재하지 않는다면 null을 리턴한다.
+
+즉, getSession(true)에서는 기존의 세션이든 새로운 세션이든 무조건 세션을 받아오지만, getSession(false)에서는 세션이 있을 경우에만 세션을 리턴하므로 반드시 null 체크를 해야한다.
+
+  1 if(request.getSession(false) == null) { 
+  2   // do something.. 
+  3 }
