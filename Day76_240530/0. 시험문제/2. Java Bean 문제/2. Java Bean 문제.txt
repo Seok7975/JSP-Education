@@ -1,0 +1,20 @@
+1. com.superman.ex 패키지에 멤버변수로 name, age, grade, studentNum을 가지는 빈을 만든다.
+
+studentInfo.jsp를 만든다.
+studentInfo.jsp에서 com.superman.ex.Student 빈을 student라는 이름으로 객체를 만들고 page 영역에 저장한다.
+student 객체에 액션태그로 name에 "홍길동", age에 "10", grade에 "3", studentNum에 "28"을 준다.
+그리고 액션태그로 각각의 값을 가져와 출력한다.
+
+2. com.superman.www 패키지에 MemberDTO 빈을 만든다.
+멤버변수로 name과 id를 둔다.
+
+memberInput.jsp를 만든다.(2-1.png 참고)
+memberInputOK.jsp를 만든다.
+memberInputOK.jsp에서 액션태그로 com.superman.www.MemberDTO 객체를 memberDTO라는 이름으로 만든다. memberInput.jsp에서 넘어온 값을 memberDTO에 넣는다. 그리고 각각의 값을 액션태그로 가져와 출력한다.
+
+3. com.superman.www 패키지에 BoardInputValue 빈을 만든다.
+멤버변수로 name, id, password, age, email을 둔다.
+
+BoardInputValue.jsp를 만든다. (3-1.png 참고)
+BoardInputValueOK.jsp를 만든다.
+BoardInputValueOK.jsp에서 액션태그로 com.superman.www.BoardInputValue를 boardInputValue이라는 이름으로 객체를 만들고 page 영역에 저장한다. BoardInputValueOK.jsp에서 넘어온 모든 값을 boardInputValue에 넣고 그 각각의 값들을 액션태그로 가져와 출력한다.

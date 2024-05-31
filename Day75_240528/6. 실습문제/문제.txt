@@ -1,0 +1,3 @@
+FrontController패턴과 Command 패턴으로 게시판의 리스트를 구현.
+
+Command 패턴을 활용하는 클래스는 주어진 Command Interface를 활용한다.

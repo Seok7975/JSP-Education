@@ -1,0 +1,74 @@
+1. main.jsp를 만든다.
+main.jsp에서 액션태그로 포워딩하여 sub.jsp로 이동하게 한다.
+
+2. forward.jsp를 만든다.
+forward.jsp에서 액션태그로 포워딩하여 forward_param.jsp로 이동하게 한다. 이동할때 "id"라는 이름으로 값을 "abcdef"와 "pw"라는 이름으로 값을 "1234"를 전달한다.
+forward_param.jsp에서 전달받은 id와 pw를 출력한다.
+
+3. include01.jsp를 만든다.
+include01.jsp에서 액션태그로 include02.jsp를 인클루드 한다.
+
+4. include03.jsp를 만든다.
+include03.jsp에서 액션태그로 include_param.jsp를 인클루드 한다.
+인클루드하면서 이름을 "id" 값을 "abcdef", 이름을 "pw" 값을 "1234"로 하여 값을 전달한다.
+include_param.jsp에서 id와 pw 값을 출력한다.
+
+5. com.dto 패키지에 MeberBean이라는 이름의 빈을 만든다.
+6. 액션태그로 java.util 패키지의 Date 객체를 만들고 오늘의 날짜와 시각을 출력한다.
+7. ch04.com.dto 패키지에 Calculator 빈을 만든다.
+
+public class Calculator {
+	public int process(int n) {
+		return n * n * n;
+	}
+}
+
+useBean02.jsp를 만들고 액션태그로 Calculator 빈을 bean이라는 이름으로 객체를 생성한다.
+그리고 그 생성한 객체를 이용하여 5의 3제곱을 구한다.
+
+8. ch04.com.dto 패키지에 Persom 클래스를 만든다.
+
+public class Person {
+	private int id = 20181004;
+	private String name = "홍길순";
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+}
+
+useBean03.jsp를 만든다.
+useBean03.jsp에서 액션태그로 Person객체를 person이라는 이름으로 만들면서 request 영역에 저장한다.
+그리고 person객체의 아이디와 이름을 출력한다.
+
+9. useBean04.jsp를 만든다.
+액션태그로 ch04.com.dto.Person 객체를 person이라는 이름으로 만들고 request영역에 저장한다.
+그리고 person객체의 아이디와 이름을 출력한다.
+person 객체의 아이디를 "20182005"로 person객체의 이름을 "홍길동"으로 한다.
+액션태그로 useBean03.jsp를 인클루드한다.
+
+10. setProperty.jsp를 만든다.
+액션태그로 ch04.com.dto.Person 객체를 person이라는 이름으로 만들고 request 영역에 저장한다.
+액션태그로 person객체의 id에 "20182005"를 준다.
+액션태그로 person객체의 name에 "홍길동"을 준다.
+아이디와 이름을 출력한다.
+
+11. getProperty01.jsp를 만든다.
+액션태그로 ch04.com.dto.Person 객체를 person이라는 이름으로 만들고 request 영역에 저장한다.
+액션태그로 person객체의 id를 가져와 출력한다.
+액션태그로 person객체의 name을 가져와 출력한다.
+
+12. getProperty02.jsp를 만든다.
+액션태그로 ch04.com.dto.Person 객체를 person이라는 이름으로 만들고 request 영역에 저장한다.
+액션태그로 person객체의 id에 "20182005"를 준다.
+액션태그로 person객체의 name에 "홍길동"을 준다.
+액션태그로 person객체의 id를 가져와 출력한다.
+액션태그로 person객체의 name을 가져와 출력한다.
