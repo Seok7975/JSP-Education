@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="5. 회원형 게시판 문제">
+        <property name="context-root" value="5._회원형_게시판_문제"/>
+        <property name="java-output-path" value="/5. 회원형 게시판 문제/build/classes"/>
+    </wb-module>
+</project-modules>
