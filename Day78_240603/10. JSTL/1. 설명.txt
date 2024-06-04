@@ -1,0 +1,348 @@
+'JSTL(JSP Standard Tag Library)이라는 JSP 확장 태그의 사용법을 배울 것이다. JSTL은 JSP의 기본 태그가 아니므로 사용하려면 JSTL API 및 이를 구현한 자바 라이브러리를 별도로 내려받아야 한다. JSTL 태그를 이용하면 JSP 페이지에서 자바 코딩을 줄일 수 있다. 이를 통해 웹 디자이너나 웹 퍼블리셔의 공동 작업을 원할하게 진행할 수 있다.
+
+JSTL 주요 태그의 사용법
+
+사용할 태그 라이브러리를 선언
+
+자바에서는 java.lang 패키지에 소속된 클래스인 경우 별도의 선언 없이 사용한다. 그러나 그 외 패키지에 소속된 클래스를 사용할 때는 import 문을 선언해야 한다. JSP에서도 <jsp:useBean> 태그와 같이 기본으로 제공되는 태그는 별도의 선언 없이 사용한다. 그러나 JSTL 확장 태그를 사용하려면 그 태그의 라이브러리를 선언해야 한다. 다음은 태그 라이브러리를 선언하는 문법이다.
+
+<%@ taglib uri="사용할 태그의 라이브러리 URI" prefix="접두사" %>
+<%@ taglib %>는 JSP의 지시자 태그이다. uri 속성은 태그 라이브러리의 네임스페이스 이름이다. 네임스페이스 이름은 URI로 되어 있다. prefix 속성은 JSTL 태그를 사용할 때 태그 이름 앞에 붙일 접두사이다.
+
+만약 JSTL 기본(core) 태그를 사용하려 한다면, 다음과 같이 taglib 지시자를 선언해야 한다.
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<c:out> 태그
+출력문을 만드는 태그이다.
+문법
+<c:out value="출력할 값" default="기본값"/>
+또는 
+<c:out value="출력할 값">기본값</c:out>
+
+value 속성 값으로 EL 표현식을 사용할 수 있다. value 값이 null 이면, 기본값이 출력된다. 기본값마저 없다면 빈 문자열이 출력된다. 
+
+<c:out value="안녕하세요!"/><br/>
+<c:out value="${null}">반갑습니다.</c:out><br/>
+<c:out value="안녕하세요!">반갑습니다.</c:out><br/>
+<c:out value="${null }" default="디폴트 값"/><br/>
+<c:out value="${null}"/><br/>
+
+실행결과
+
+안녕하세요!
+반갑습니다.
+안녕하세요!
+디폴트 값
+
+<c:set> 태그
+<c:set> 태그는 변수를 생성하거나 기존 변수의 값을 덮어쓸 때 사용한다. 이 태그로 생성한 변수는 JSP 페이지의 로컬 변수가 아니라 보관소(JspContext, ServletRequest, HttpSession, ServletContext)에 저장된다.
+
+문법
+// value 속성을 사용하여 값 설정
+<c:set var="변수명" value="값" scope="page|request|session|application"/>
+
+// 태그 콘텐츠를 사용하여 값 설정
+<c:set var="변수명" scope="page|request|session|application">값</c:set>
+
+scope 속성의 기본값은 page 입니다. scope를 생략하면 JspContext(page)에 변수명으로 값이 저장된다.
+
+<h3>값 설정 방식</h3>
+<c:set var="username1" value="홍길동"/>
+<c:set var="username2">임꺽정</c:set>
+1 ${username1}<br/>
+2 ${username2}<br/>
+
+<h3>기본 보관소 - page</h3>
+3 ${pageScope.username1}<br/>
+4 ${requestScope.username2}<br/>
+
+<h3>보관소 지정 - scope 속성</h3>
+<c:set var="username3" scope="request">일지매</c:set>
+5 ${pageScope.username3}<br/>
+6 ${requestScope.username3}<br/>
+
+<h3>기존의 값 덮어씀</h3>
+<% pageContext.setAttribute("username4", "똘이장군"); %>
+7 기존 값=${username4}<br>
+<c:set var="username4" value="주먹대장"/>
+8 덮어쓴 값 = ${username4}<br/>
+
+실행결과
+
+값 설정 방식
+
+1 홍길동
+2 임꺽정
+기본 보관소 - page
+
+3 홍길동
+4 
+보관소 지정 - scope 속성
+
+5 
+6 일지매
+기존의 값 덮어씀
+
+7 기존 값=똘이장군
+8 덮어쓴 값 = 주먹대장
+
+<c:set>태그를 이용한 객체의 프로퍼티 값 설정
+
+<h3>객체의 프로퍼티 값 변경</h3>
+<%!
+public static class MyMember{
+	int no;
+	String name;
+	
+	public int getNo(){
+		return no;
+	}
+	public void setNo(int no){
+		this.no = no;
+	}
+	public String getName(){
+		return name;
+	}
+	public void setName(String name){
+		this.name = name;
+	}
+}
+%>
+<%
+MyMember member = new MyMember();
+member.setNo(100);
+member.setName("홍길동");
+pageContext.setAttribute("member", member);
+%>
+${member.name}<br/>
+<c:set target="${member}" property="name" value="임꺽정"/>
+${member.name}<br/>
+
+실행 결과
+
+객체의 프로퍼티 값 변경
+
+홍길동
+임꺽정
+
+예제 코드를 보면 'MyMember'라는 내장 클래스(Inner Class)를 새로 생성하였다.
+<c:set>을 사용하여 객체의 프로퍼티 값을 설정할 때는 셋터 메서드의 리턴 타입이 void 이어야 한다. MyMember 클래스처럼 셋터 메서드의 리턴 타입이 void가 아니라면, "프로퍼티"에 해당하는 셋터 메서드를 찾을 수 없다."라는 예외가 발생한다. 
+
+<c:remove> 태그
+var 속성에 이름을 지정하면, 보관소에서 해당 이름을 가진 값을 제거한다. 물론 scope 속성으로 보관소를 명시할 수 있다. scope의 기본값은 page이다.
+
+문법
+// value 속성을 사용하여 값 설정
+<c:remove var="변수명" scope="page|request|session|application"/>
+
+<h3>보관소에 저장된 값 제거</h3>
+<% pageContext.setAttribute("username1", "홍길동"); %>
+${username1}<br/>
+<c:remove var="username1"/>
+${username1}<br/>
+
+실행결과
+보관소에 저장된 값 제거
+
+홍길동
+
+<c:if>태그
+이 태그의 test 속성값이 참이면, 콘텐츠가 실행된다. 참거짓 테스트 결과를 보관소에 저장할 수도 있다.
+
+문법
+<c:if test="조건" var="변수명" scope="page|request|session|application">
+콘텐츠
+</c:if>
+
+<c:if test="${10 > 20 }" var = "result1">
+10은 20보다 크다. <br/>
+</c:if>
+${result1}<br/>
+
+<c:if test="${10 < 20 }" var = "result2">
+10은 20보다 작다.<br/>
+</c:if>
+${result2}<br/>
+
+실행결과
+
+false
+10은 20보다 작다.
+true
+
+<c:choose> 태그
+자바의 switch, case.. 등과 같은 기능을 수행한다. 즉 여러 가지 조건에 따라 다른 작업을 해야 할 필요가 있을 때 이 태그를 사용한다.
+
+문법
+<c:choose>
+	<c:when test="참거짓 값"></c:when>
+	<c:when test="참거짓 값"></c:when>
+	...
+	<c:otherwise></otherwise>
+</c:choose>
+
+<c:when> 태그는 한 개 이상 있어야 한다. <c:other> 태그는 0 또는 한 개가 올 수 있다.
+
+<c:set var="userid" value="admin" />
+<c:choose>
+	<c:when test="${userid == 'hong'}">
+	홍길동님 반갑습니다.
+	</c:when>
+	<c:when test="${userid == 'lim'}">
+	임꺽정님 반갑습니다.
+	</c:when>
+	<c:when test="${userid == 'admin'}">
+	관리자 전용 페이지입니다.
+	</c:when>
+	<c:otherwise>
+	등록되지 않은 사용자입니다.
+	</c:otherwise>
+</c:choose>
+
+실행결과
+관리자 전용 페이지입니다.
+
+<c:forEach> 태그
+반복적인 작업을 정의할 때 사용한다. 목록에서 값을 꺼내어 처리하고 싶을 때 이 태그를 사용하면 된다.
+
+문법
+<c:forEach var="변수명" items="목록데이터" begin="시작인덱스" end="종료인덱스">
+콘텐츠
+</c:forEach>
+
+items 속성 값으로 다음의 값이 올 수 있다.
+
+* 배열
+* java.util.Collection 구현체. 예) ArrayList, LinkedList, Vector, EnumSet 등
+* java.util.Enumeration 구현체
+* java.util.Map 구현체
+* 콤마(,) 구분자로 나열된 문자열. 예) 홍길동, 임꺽정, 일지매
+
+var 속성은 반복문을 돌면서 items에서 꺼낸 항목 값을 가리키는 참조 변수이다.
+
+begin과 end 속성은 items를 반복할 때 몇 번째 인덱스에서 시작하고, 몇 번째 인덱스에서 종료할 것인지를 지정한다. 다음은 배열을 반복할 경우의 예제 코드 이다.
+
+<% pageContext.setAttribute("nameList", new String[] {"홍길동", "임꺽정", "일지매"}); %>
+<ul>
+<c:forEach var="name" items="${nameList}">
+	<li>${name}</li>
+</c:forEach>
+</ul>
+
+실행결과
+홍길동
+임꺽정
+일지매
+
+다음과 같이 반복 대상에 대해 시작 인덱스와 종료 인덱스를 지정할 수 있다.
+
+<% pageContext.setAttribute("nameList", new String[] {"홍길동", "임꺽정", "일지매", "주먹대장", "똘이장군"}); %>
+<ul>
+<c:forEach var="name" items="${nameList}" begin="2" end="3">
+	<li>${name}</li>
+</c:forEach>
+</ul>
+
+실행결과
+일지매
+주먹대장
+
+다음은 ArrayList 객체에 대해 반복문을 적용한 예이다.
+
+<%
+ArrayList<String> nameList3 = new ArrayList<String>();
+nameList3.add("홍길동");
+nameList3.add("임꺽정");
+nameList3.add("일지매");
+nameList3.add("주먹대장");
+nameList3.add("똘이장군");
+pageContext.setAttribute("nameList3", nameList3);
+%>
+<ul>
+<c:forEach var="name" items="${nameList3}">
+	<li>${name}</li>
+</c:forEach>
+</ul>
+
+실행결과
+홍길동
+임꺽정
+일지매
+주먹대장
+똘이장군
+
+다음과 같이 콤마(,)로 구분된 문자열도 반복문을 적용할 수 있다.
+
+<% pageContext.setAttribute("nameList4", "홍길동, 임꺽정, 일지매, 주먹대장, 똘이장군"); %>
+<ul>
+<c:forEach var="name" items="${nameList4}">
+	<li>${name}</li>
+</c:forEach>
+</ul>
+
+실행결과
+
+홍길동
+임꺽정
+일지매
+주먹대장
+똘이장군
+
+배열이나 List 없이 임의적으로 특정 횟수만큼 반복문을 돌리고 싶을 때는 다음과 같이 하면 된다.
+
+<ul>
+<c:forEach var="no" begin="1" end="6">
+	<li><a href="jstl0${no}.jsp">JSTL 예제 ${no}</a></li>
+</c:forEach>
+</ul>
+
+실행결과
+
+JSTL 예제 1
+JSTL 예제 2
+JSTL 예제 3
+JSTL 예제 4
+JSTL 예제 5
+JSTL 예제 6
+
+증가 단계를 지정합니다.
+
+<c:forEach var="i" begin="0" end="3" step="2">
+    <p><c:out value="${i}" /></p>
+</c:forEach>
+
+실행결과 :
+
+0
+2
+
+0부터 2씩 증가하면서 출력합니다.  step는 음수를 사용할 수 없다.
+
+
+<c:forTokens>태그
+이 태그를 사용하면 문자열을 특정 구분자(delimiter)로 분리하여 반복문을 돌릴 수 있다.
+
+<% pageContext.setAttribute("tokens", "v1=20&v2=30&op=+"); %>
+<ul>
+<c:forTokens var="item" items="${tokens}" delims="&">
+	<li>${item}</li>
+</c:forTokens>
+</ul>
+
+실행결과
+v1=20
+v2=30
+op=+
+
+<c:url> 태그
+URL을 만들 때 사용하는 태그이다. 이 태그를 사용하면 매개변수를 포함한 URL을 손쉽게 만들 수 있다.
+<c:url var="calcUrl" value="http://localhost:8080/calc">
+	<c:param name="v1" value="20"/>
+	<c:param name="v2" value="30"/>
+	<c:param name="op" value="+"/>
+</c:url>
+<a href="${calcUrl}">계산하기</a>
+
+<c:redirect> 태그
+이 태그를 사용하여 리다이렉트를 처리할 수 있다. 즉 내부적으로 HttpServletResponse의 sendRedirect()를 호출한다.

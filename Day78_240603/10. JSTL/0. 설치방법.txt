@@ -1,0 +1,6 @@
+http://jakarta.apache.org/ 접속 한 후, 좌측의 Taglibs 클릭
+Apache Standard Taglib 클릭 
+Standard 1.1 download 클릭
+binaries 클릭
+1.1.2 .zip 933K 다운로드
+아파치 서버에 lib에 다운로드 받은 것의 lib jstl.jar, standard.jar를 복사
