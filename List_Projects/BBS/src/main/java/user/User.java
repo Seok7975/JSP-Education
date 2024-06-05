@@ -20,31 +20,31 @@ public class User {
 		return userPassword;
 	}
 	
-	public void setPassword(String userPassword) {
+	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
 	}
 	
-	public String getuserName() {
+	public String getUserName() {
 		return userName;
 	}
 	
-	public void setuserName(String userName) {
+	public void setUserName(String userName) {
 		this.userName = userName;
 	}
 	
-	public String getuserGender() {
+	public String getUserGender() {
 		return userGender;
 	}
 	
-	public void setuserGender(String userGender) {
+	public void setUserGender(String userGender) {
 		this.userGender = userGender;
 	}
 	
-	public String getuserEmail() {
+	public String getUserEmail() {
 		return userEmail;
 	}
 	
-	public void setuserEmail(String userEmail) {
+	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
 
