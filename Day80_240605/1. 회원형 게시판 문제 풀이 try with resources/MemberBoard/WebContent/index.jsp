@@ -22,7 +22,7 @@
 			</form>
 			<a href="Member/memberRegister.do">회원가입</a><br/>		
 		</c:when>
-		<c:when test="${userInfo ne null }">
+		<c:when test="${userInfo ne null }"> <!-- ne : not equal -->
 			${userInfo.id } 님<br/>
 			<a href="logout.do">로그아웃</a><br/>
 			<a href="Member/memberModify.do">회원정보 수정</a><br/>

@@ -17,7 +17,7 @@ public class ListCommand implements Command {
 	public void excute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BoardDAO dao = BoardDAO.getBoardDAO();
 		int curPage = 0;
-		if(request.getParameter("curPage") != null)
+		if(request.getParameter("curPage") != null) // get이나 post방식으로 받고 있지 않으면 null, 넘기면 null이 아님
 			curPage = Integer.parseInt(request.getParameter("curPage"));
 		ArrayList<BoardDTO> list = dao.listDAO(curPage);
 		int totalPage = dao.calTotalPage();

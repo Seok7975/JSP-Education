@@ -1,0 +1,20 @@
+<!-- 로그인 시도를 처리하는 페이지 -->
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="bbs.BbsDAO" %>
+<%@ page import="java.io.PrintWriter" %> <!-- 자바스크립트를 사용하기 위함 -->
+<% request.setCharacterEncoding("UTF-8"); %> <!-- 건너오는 데이터를 UTF-8로 받기위함 -->
+<jsp:useBean id="bbs" class="bbs.Bbs" scope="page" />  <!-- scope="page" : 현재 페이지 안에서만 beans를 사용 -->
+<jsp:setProperty name="user" property="userID" />
+<jsp:setProperty name="user" property="userPassword" />
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>JSP 게시판 웹 사이트</title>
+</head>
+<body>
+
+</body>
+</html>

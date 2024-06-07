@@ -54,7 +54,7 @@
 				${i+1}
 			</c:when>
 			<c:when test="${i ne curPage}">
-				<a href="list.do?curPage=${i}">${i+1}</a>
+				<a href="list.do?curPage=${i}">${i+1}</a>  <%-- value는 1, 출력되는 값은 2 --%>
 			</c:when>
 		</c:choose>
 <%-- 	<c:if test="${i eq curPage}">

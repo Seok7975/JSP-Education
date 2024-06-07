@@ -22,6 +22,8 @@ public class BoardDAO {
 	private DataSource dataSource;
 	private final String GET_BOARD_DTO_SQL = "SELECT m.*, mb.* FROM " + BOARD_TABLE_NAME + " mb JOIN " + MEMBER_TABLE_NAME + " m" + " ON mb.no = ? WHERE m.id = ?";
 	private final String SELECT_ALL_BOARD_SQL = "SELECT * FROM " + BOARD_TABLE_NAME + " order by GROUPNUM DESC, STEPNUM ASC LIMIT ?, ?";
+	/* 첫 번째 물음표는 오프셋(offset)을 나타냅니다. 이는 결과 집합에서 몇 번째 행부터 시작할지를 지정합니다.
+	두 번째 물음표는 가져올 행의 최대 개수를 나타냅니다. */
 	private final String INSERT_BOARD_SQL = 
 			"INSERT INTO " + BOARD_TABLE_NAME + " (ID, TITLE, CONTENTS, GROUPNUM) values(?, ?, ?, ?)";
 	private final String GET_CURRENT_NUM_SQL = "SELECT MAX(no) from " + BOARD_TABLE_NAME;

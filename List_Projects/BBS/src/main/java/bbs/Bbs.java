@@ -9,6 +9,7 @@ public class Bbs {
 	private int bbsID;
 	private String bbsTitle;
 	private String userID;
+	private String bbsContent;
 	private String bbsDate;
 	private int bbsAvailable;
 	
@@ -30,9 +31,19 @@ public class Bbs {
 	public void setUserID(String userID) {
 		this.userID = userID;
 	}
+	
+	
+	public String getBbsContent() { 
+		  return bbsContent;
+	} 
+	public void setBbsContent(String bbsContent) { 
+		this.bbsContent = bbsContent; 
+	}
+	
 	public String getBbsDate() {
 		return bbsDate;
 	}
+	
 	public void setBbsDate(String bbsDate) {
 		this.bbsDate = bbsDate;
 	}

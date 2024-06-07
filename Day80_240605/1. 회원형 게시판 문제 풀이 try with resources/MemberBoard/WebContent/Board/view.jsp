@@ -31,7 +31,7 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<c:if test="${userInfo.id eq dto.id }">
+					<c:if test="${userInfo.id eq dto.id }"> <%-- 자기가 쓴 글 --%>
 						<input type="submit" value="수정">					
 						<a href="delete.do?no=${dto.no}">삭제</a>
 					</c:if>
