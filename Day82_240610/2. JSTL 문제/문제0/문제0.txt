@@ -1,0 +1,5 @@
+JSTL을 이용하여 HashMap 변수를 mapTest라는 이름으로 생성하고 다음 값을 넣자.
+Key에 "key1" Value에 "value1"
+Key에 "key2" Value에 "value2"
+
+그리고 JSTL을 이용하여 그 값들을 출력해 보자.
