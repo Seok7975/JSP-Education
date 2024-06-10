@@ -1,0 +1,174 @@
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.example.Task"%> <!-- Task 클래스 import -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>메인 페이지</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <style>
+    
+    
+ /*         body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0px;
+        } 
+        .container {
+        	/* background-color: #f4f4f9; */
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            background: #f9f9f9;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        ul li span {
+            flex-grow: 1;
+        }
+         ul li.completed span {
+            text-decoration: line-through;
+        } 
+        .delete {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .delete:hover {
+            background: #ff4c4c;
+        }
+        .add-item {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .add-item input, .add-item button {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .add-item button {
+            background: #4caf50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .add-item button:hover {
+            background: #45a049;
+        } */
+    </style>
+</head>
+<body>
+<%
+    String userID = null;
+    if (session.getAttribute("userID") != null) {
+        userID = (String) session.getAttribute("userID");
+    }
+%>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="main.jsp">게시판 프로젝트</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="main.jsp">메인</a></li>
+                    <li><a href="bbs.jsp">게시판</a></li>
+                    <li class="active"><a href="planner.jsp">플래너</a></li> <!-- 플래너 메뉴 추가 -->
+                </ul>
+                <%
+                    if(userID == null) {
+                %>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">접속하기 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="login.jsp">로그인</a></li>
+                                <li><a href="join.jsp">회원가입</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                <%
+                    } else {
+                %>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">회원관리<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="logoutAction.jsp">로그아웃</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                <%
+                    }
+                %>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>할 일 목록</h1>
+        <form class="add-item" action="addItem.jsp" method="post">
+            <input type="text" name="item" placeholder="새로운 할 일 추가" required>
+            <input type="datetime-local" name="dueDateTime" required>
+            <button type="submit">추가</button>
+        </form>
+        <ul>
+            <%
+                List<Task> tasks = (List<Task>) session.getAttribute("tasks");
+                if (tasks == null) {
+                    tasks = new ArrayList<>();
+                }
+                for (Task task : tasks) {
+            %>
+                <li class="<%= task.isCompleted() ? "completed" : "" %>">
+                    <form action="toggleComplete.jsp" method="post" style="margin: 0;">
+                        <input type="hidden" name="taskId" value="<%= task.getId() %>">
+                        <input type="checkbox" name="completed" <%= task.isCompleted() ? "checked" : "" %> onChange="this.form.submit()">
+                    </form>
+                    <span><%= task.getItem() %> (마감: <%= task.getDueDateTime() %>)</span>
+                    <form action="deleteItem.jsp" method="post" style="margin: 0;">
+                        <input type="hidden" name="taskId" value="<%= task.getId() %>">
+                        <button class="delete" type="submit">삭제</button>
+                    </form>
+                </li>
+            <%
+                }
+            %>
+        </ul>
+    </div>
+</body>
+</html>

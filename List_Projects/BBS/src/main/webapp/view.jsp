@@ -18,6 +18,7 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="css/jumbotronCustom.css">
 <title>JSP 게시판 웹 사이트</title>
 </head>
 <body>
@@ -54,6 +55,7 @@
 				<ul class="nav navbar-nav">
 					<li><a href="main.jsp">메인</a></li>
 					<li class="active"><a href="bbs.jsp">게시판</a></li>
+					<li><a href="planner/planner.jsp">플래너</a></li>
 				</ul>
 				<%
 					if(userID == null) {
@@ -64,6 +66,7 @@
 							<ul class="dropdown-menu">
 								<li><a href="login.jsp">로그인</a></li>
 								<li><a href="join.jsp">회원가입</a></li>
+								<li><a href="planner.jsp">플래너</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -127,7 +130,7 @@
 					if(userID != null && userID.equals(bbs.getUserID())) {
 				%>
 						<a href="update.jsp?bbsID=<%= bbsID %>" class="btn btn-primary">수정</a>
-						<a href="deleteAction.jsp?bbsID=<%= bbsID %>" class="btn btn-primary">삭제</a>
+						<a onclick="return confirm('정말로 삭제하시겠습니까?')" href="deleteAction.jsp?bbsID=<%= bbsID %>" class="btn btn-primary">삭제</a>
 				<%
 					}
 				%>

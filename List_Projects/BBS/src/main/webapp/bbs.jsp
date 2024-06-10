@@ -18,6 +18,7 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="css/jumbotronCustom.css">
 <title>JSP 게시판 웹 사이트</title>
 <style type="text/css">
 	a, a:hover {
@@ -52,6 +53,7 @@
 				<ul class="nav navbar-nav">
 					<li><a href="main.jsp">메인</a></li>
 					<li class="active"><a href="bbs.jsp">게시판</a></li>
+					<li><a href="planner/planner.jsp">플래너</a></li>
 				</ul>
 				<%
 					if(userID == null) {

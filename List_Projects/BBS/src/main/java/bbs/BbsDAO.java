@@ -138,13 +138,25 @@ public class BbsDAO {
 		return null;
 	}
 	
-	public int update(int bbsID, String bbsTitle, String bbsContent) {// 수정하는 함수
+	public int update(int bbsID, String bbsTitle, String bbsContent) {// 특정한 매개변수로 들어온 제목과 내용을 수정하는 함수
 		String SQL = "UPDATE BBS SET bbsTitle = ?, bbsContent = ? WHERE bbsID = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, bbsTitle);
 			pstmt.setString(2, bbsContent);
 			pstmt.setInt(3, bbsID);
+			return pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	
+	public int delete(int bbsID) {// bbsAvailable =0로 하여 글을 삭제하는 함수
+		String SQL = "UPDATE BBS SET bbsAvailable =0 WHERE bbsID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, bbsID);
 			return pstmt.executeUpdate();
 		} catch(Exception e) {
 			e.printStackTrace();
