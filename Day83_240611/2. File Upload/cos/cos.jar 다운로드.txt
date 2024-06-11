@@ -1,0 +1,5 @@
+http://www.servlets.com/cos/ 접속
+왼쪽 메뉴바에서 com.oreilly.servlet 클릭
+아래쪽 cos-22.05.zip 클릭
+
+cos-22.05\lib 에있는 cos.jar를 톰캣에 lib에 복사 또는 WebContent에 WEB-INF에 lib에 복사

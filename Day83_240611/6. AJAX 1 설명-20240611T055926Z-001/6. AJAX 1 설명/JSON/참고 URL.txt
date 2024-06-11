@@ -1,0 +1,3 @@
+https://tcpschool.com/json/json_basic_structure#google_vignette
+https://tcpschool.com/json/json_datatype_object
+https://tcpschool.com/json/json_datatype_numeric
