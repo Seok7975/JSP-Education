@@ -1,0 +1,82 @@
+1. DebugTest class의 라인 7 옆을 더블 클릭(Breakpoint) 설정
+(다시 한번 더블 클릭하면 Breakpoint 사라진다.)
+F11를 눌러 디버그 모드를 시작한다.
+오른쪽 Variables 탭에서 num 값 확인.
+상단 Step Over클릭(한줄 씩 실행). 혹은 F6 클릭.
+상단 빨간색 네모 클릭(Ctrl + F2) 디버그 모드 종료.
+
+2. F11을 눌러 다시 실행.
+브레이크 포인트로 인해 실행이 멈추면,
+왼쪽 Variables 탭의 num을 10으로 바꾼다.
+그리고 상단 Step Over클릭(한줄 씩 실행). 혹은 F6 클릭.
+num값과 result 값을 확인한다.
+
+2-1. 모든 브레이크 포인트를 지운다.
+그리고 DebugTest의 6번 라인과 9번 라인에 브레이크 포인트를 설정한다.
+그리고 F11을 눌러 디버깅 모드로 실행한다.(6번라인에서 실행이 멈춘다.)
+F8(Resume)을 누른다. (9번라인에서 실행이 멈춘다.)
+
+3. Breakpoints에서 설정된 Breakpoint를 볼수 있다.
+Breakpoint가 많이 설정되어 있을 경우 유용.
+여기서 Disable, Remove도 가능
+
+4. 디버깅 모드에서 변수에 마우스 커서를 올리면 변수의 상태 확인할 수 있음.
+
+5. 디버깅 모드에서 변수를 더블클릭한후. ctrl+shift+i 그리고 다시 ctrl+shift+i를 클릭하면 Expressions에 등록되어 변수의 값을 관찰할 수 있다.
+(드래그해도 됨)
+
+6. DebugTest class를 디버깅 모드로 실행하자.(f11 클릭)
+7번라인에서 멈추면(물론 7번 라인에 breakpoint가 있어야 된다.)
+하단 Debug Shell을 선택하고
+num = 100이라고 입력한 후에 
+num = 100을 드래그로 선택하자.
+그리고 Excute the Selected Text를 클릭하자
+(혹은 우클릭 Execute 클릭)
+그리고 F6(Step Over)를 눌러서 실행
+출력 결과를 보자.
+
+8. 디버깅 모드 종료후
+DebugTest2 클래스의 10번 라인에 브레이크포인트 설정.
+DebugTest2를 디버깅 모드로 시작하자(f11 클릭)
+Debug Shell에 sum + i를 입력하고 명령어를 드래그 한후
+마우스 오른 쪽 클릭 Display 클릭(혹은 아이콘 Display Result of Evaluation Selected Text 선택)
+
+9. 브레이크 포인트 조건
+디버깅 모드 종료후
+
+브레이크 포인트(10번 라인)에서 우클릭 후 Breakpoint Properties 클릭
+Conditional 선택 후 조건 문을 작성.
+조건문으로
+i == 50
+이라고 작성해 보자.
+DebugTest2를 디버깅 모드로 시작하자(f11 클릭)
+그러면 i가 50일 경우에서 브레이크포인트가 작동해서 멈출 것이다.
+
+10. Hit count
+브레이크 포인트(10번 라인)에서 우클릭 후 Breakpoint Properties 클릭
+Hit count 선택하고 10 입력
+DebugTest2를 디버깅 모드로 시작하자(f11 클릭)
+그러면 해당 라인의 브레이크 포인트가 Hit count 만큼 실행된 이후 디버그 화면으로 이동할 것이다.
+
+11. PersonMain 클래스에서
+9번 라인에 브레이크 포인트 만들고
+디버깅 모드 시작(F11클릭)
+F5(Step Into)키 클릭하면서 한단계씩 진행
+(한줄씩 실행하는데 메소드가 있으면 메소드 안으로 들어간다.)
+
+12. PersonMain 클래스에서
+디버깅 모드 시작(F11클릭)
+F6(Step Over)키 클릭하면서 한단계씩 진행
+(한줄씩 실행하는데 메소드가 있어도 메소드 안으로 들어가지 않는다.)
+
+13. F7(Step Return) 메소드를 호출한 곳으로 돌아간다.
+
+14. Drop to Frame 
+과거의 스택으로 돌아가 그 지점부터 다시 디버깅을 할 수 있게 된다.
+
+15. Bookmarks
+Winodw > Show View > Others  > General > Bookmarks
+
+소스코드에서 북마크 하고 싶은 곳에서 마우스 오른 쪽 클릭(라인넘버 왼쪽에서)
+Add Bookmark - 이름 설정 - 클릭
+북마크 표시에서 다시 오른쪽 마우스 클릭 - Remove Bookmark

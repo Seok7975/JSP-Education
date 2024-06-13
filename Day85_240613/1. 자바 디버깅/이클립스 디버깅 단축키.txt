@@ -1,0 +1,5 @@
+디비깅 모드로 프로그램 시작		F11
+
+Toggle Breakpoint 		Ctrl + Shift + B
+Inspect			Ctrl + Shift + I
+Execute			Ctrl + U

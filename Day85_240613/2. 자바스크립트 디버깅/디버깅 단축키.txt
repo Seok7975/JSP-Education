@@ -1,0 +1,9 @@
+크롬 윈도우 단축키
+
+개발자 도구 열기 : F12
+새로고침 : F5
+Resume : F8
+Step : F9
+Step Over : F10
+Step Into : F11
+Step out : Shift + F11 (실행 중인 함수의 실행이 끝날 때까지 실행을 계속함)

@@ -1,0 +1,10 @@
+https://ko.javascript.info/debugging-chrome
+
+https://developer.google.com/web/tools/chrome-devtools
+
+자바스크립트 디버깅
+https://developer.chrome.com/docs/devtools/javascript?hl=ko
+
+https://developer.chrome.com/blog/new-in-devtools-65/#async
+
+https://developer.chrome.com/docs/devtools/

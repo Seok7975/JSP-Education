@@ -1,0 +1,4 @@
+1.
+https://developer.chrome.com/docs/devtools/javascript?hl=ko
+2.
+https://developer.chrome.com/docs/devtools/javascript/breakpoints?hl=ko
