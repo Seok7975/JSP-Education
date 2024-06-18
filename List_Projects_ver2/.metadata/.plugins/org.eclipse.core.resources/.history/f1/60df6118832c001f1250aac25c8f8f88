@@ -1,0 +1,58 @@
+package com.example;
+
+public class Task {
+    private String id;
+    private String item;
+    private String startDateTime;
+    private String dueDateTime;
+    private boolean completed;
+
+    public Task(String id, String item, String startDateTime, String dueDateTime) {
+        this.id = id;
+        this.item = item;
+        this.startDateTime = startDateTime;
+        this.dueDateTime = dueDateTime;
+        this.completed = false;
+    }
+
+    // Getters and setters
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getItem() {
+        return item;
+    }
+
+    public void setItem(String item) {
+        this.item = item;
+    }
+
+    public String getStartDateTime() {
+        return startDateTime;
+    }
+
+    public void setStartDateTime(String startDateTime) {
+        this.startDateTime = startDateTime;
+    }
+
+    public String getDueDateTime() {
+        return dueDateTime;
+    }
+
+    public void setDueDateTime(String dueDateTime) {
+        this.dueDateTime = dueDateTime;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+}

@@ -1,0 +1,4 @@
+127.0.0.1 - - [16/Jun/2024:19:57:06 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [16/Jun/2024:19:57:08 +0900] "GET /ToDoList%EA%B3%B5%EC%9C%A0_%EA%B2%8C%EC%8B%9C%ED%8C%90/bbs.jsp HTTP/1.1" 200 5007
+0:0:0:0:0:0:0:1 - - [16/Jun/2024:19:57:08 +0900] "GET /ToDoList%EA%B3%B5%EC%9C%A0_%EA%B2%8C%EC%8B%9C%ED%8C%90/css/jumbotronCustom.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [16/Jun/2024:19:57:09 +0900] "GET /favicon.ico HTTP/1.1" 404 818
