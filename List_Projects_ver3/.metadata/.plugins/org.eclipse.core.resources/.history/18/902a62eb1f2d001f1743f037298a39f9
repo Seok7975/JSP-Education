@@ -1,0 +1,67 @@
+package com.example;
+
+import java.util.Date;
+
+public class Task {
+    private String id;
+    private String userID;
+    private String item;
+    private Date startDateTime;
+    private Date dueDateTime;
+    private String completed;
+
+    public Task() {
+        this.id = UUID.randomUUID().toString();
+        this.completed = "no";
+    }
+
+    // Getters and Setters
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public String getItem() {
+        return item;
+    }
+
+    public void setItem(String item) {
+        this.item = item;
+    }
+
+    public Date getStartDateTime() {
+        return startDateTime;
+    }
+
+    public void setStartDateTime(Date startDateTime) {
+        this.startDateTime = startDateTime;
+    }
+
+    public Date getDueDateTime() {
+        return dueDateTime;
+    }
+
+    public void setDueDateTime(Date dueDateTime) {
+        this.dueDateTime = dueDateTime;
+    }
+
+    public String getCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(String completed) {
+        this.completed = completed;
+    }
+}

@@ -1,0 +1,59 @@
+package com.example;
+
+public class Task {
+    private String id;
+    private String userID;
+    private String item;
+    private String startDateTime;
+    private String dueDateTime;
+    private String completed; // 변경: boolean -> String
+
+    // getter 및 setter 메서드
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public String getItem() {
+        return item;
+    }
+
+    public void setItem(String item) {
+        this.item = item;
+    }
+
+    public String getStartDateTime() {
+        return startDateTime;
+    }
+
+    public void setStartDateTime(String startDateTime) {
+        this.startDateTime = startDateTime;
+    }
+
+    public String getDueDateTime() {
+        return dueDateTime;
+    }
+
+    public void setDueDateTime(String dueDateTime) {
+        this.dueDateTime = dueDateTime;
+    }
+
+    public String getCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(String completed) {
+        this.completed = completed;
+    }
+}

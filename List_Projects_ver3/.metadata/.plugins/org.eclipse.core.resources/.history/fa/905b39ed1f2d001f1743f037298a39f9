@@ -1,0 +1,91 @@
+package com.example;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class TaskDAO {
+    // Database connection details
+    private String jdbcURL = "jdbc:mysql://localhost:3306/todolist";
+    private String jdbcUsername = "root";
+    private String jdbcPassword = "password";
+
+    private static final String INSERT_TASK_SQL = "INSERT INTO tasks (id, userID, item, startDateTime, dueDateTime, completed) VALUES (?, ?, ?, ?, ?, ?);";
+    private static final String SELECT_TASKS_BY_USERID = "SELECT * FROM tasks WHERE userID = ?;";
+    private static final String DELETE_TASK_SQL = "DELETE FROM tasks WHERE id = ? AND userID = ?;";
+    private static final String UPDATE_TASK_SQL = "UPDATE tasks SET completed = ? WHERE id = ? AND userID = ?;";
+
+    public TaskDAO() {}
+
+    protected Connection getConnection() throws SQLException {
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return connection;
+    }
+
+    public void addTask(Task task) throws SQLException {
+        try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_TASK_SQL)) {
+            preparedStatement.setString(1, task.getId());
+            preparedStatement.setString(2, task.getUserID());
+            preparedStatement.setString(3, task.getItem());
+            preparedStatement.setTimestamp(4, new Timestamp(task.getStartDateTime().getTime()));
+            preparedStatement.setTimestamp(5, new Timestamp(task.getDueDateTime().getTime()));
+            preparedStatement.setString(6, task.getCompleted());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Task> getTasksByUserID(String userID) {
+        List<Task> tasks = new ArrayList<>();
+        try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(SELECT_TASKS_BY_USERID)) {
+            preparedStatement.setString(1, userID);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                String id = rs.getString("id");
+                String item = rs.getString("item");
+                Date startDateTime = rs.getTimestamp("startDateTime");
+                Date dueDateTime = rs.getTimestamp("dueDateTime");
+                String completed = rs.getString("completed");
+                Task task = new Task();
+                task.setId(id);
+                task.setUserID(userID);
+                task.setItem(item);
+                task.setStartDateTime(startDateTime);
+                task.setDueDateTime(dueDateTime);
+                task.setCompleted(completed);
+                tasks.add(task);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return tasks;
+    }
+
+    public void deleteTask(String id, String userID) throws SQLException {
+        try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(DELETE_TASK_SQL)) {
+            preparedStatement.setString(1, id);
+            preparedStatement.setString(2, userID);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateTaskCompletion(String id, String userID, String completed) throws SQLException {
+        try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_TASK_SQL)) {
+            preparedStatement.setString(1, completed);
+            preparedStatement.setString(2, id);
+            preparedStatement.setString(3, userID);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}

@@ -1,0 +1,15 @@
+<%@ page import="java.sql.*, java.io.*, javax.servlet.*, javax.servlet.http.*, com.example.TaskDAO" %>
+<%
+    request.setCharacterEncoding("UTF-8");
+
+    String id = request.getParameter("id");
+    String item = request.getParameter("item");
+    String startDateTime = request.getParameter("startDateTime");
+    String dueDateTime = request.getParameter("dueDateTime");
+    String completed = request.getParameter("completed");
+
+    TaskDAO taskDAO = new TaskDAO();
+    taskDAO.updateTask(id, item, startDateTime, dueDateTime, completed);
+
+    response.sendRedirect("planner.jsp");
+%>
