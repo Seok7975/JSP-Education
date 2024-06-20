@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*, user.UserDAO" %>
 <!DOCTYPE html>
@@ -34,6 +34,7 @@
 					<li><a href="main.jsp">메인</a></li>
 					<li><a href="bbs.jsp">게시판</a></li>
 					<li><a href="planner/planner.jsp">플래너</a></li>
+					
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
@@ -71,4 +72,41 @@
 		%>
 	</div>
 </body>
-</html>
+</html> --%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="user.UserDAO" %>
+
+<%
+    request.setCharacterEncoding("UTF-8");
+
+    String userName = request.getParameter("userName");
+    String userEmail = request.getParameter("userEmail");
+
+    if (userName == null || userName.trim().isEmpty()) {
+        request.setAttribute("errorMessage", "이름을 입력해주세요.");
+        request.getRequestDispatcher("showUserID.jsp").forward(request, response);
+        return;
+    }
+
+    if (userEmail == null || userEmail.trim().isEmpty()) {
+        request.setAttribute("errorMessage", "이메일을 입력해주세요.");
+        request.getRequestDispatcher("showUserID.jsp").forward(request, response);
+        return;
+    }
+
+    UserDAO userDAO = new UserDAO();
+    String userID = userDAO.findUserId(userName, userEmail);
+
+    request.setAttribute("userID", userID);
+
+    // 디버깅용 정보 출력
+    userDAO.printDebugInfo(userName, userEmail);
+
+    if (userID != null) {
+        request.getRequestDispatcher("showUserID.jsp").forward(request, response);
+    } else {
+        request.setAttribute("errorMessage", "입력하신 정보와 일치하는 아이디가 없습니다.");
+        request.getRequestDispatcher("showUserID.jsp").forward(request, response);
+    }
+%>

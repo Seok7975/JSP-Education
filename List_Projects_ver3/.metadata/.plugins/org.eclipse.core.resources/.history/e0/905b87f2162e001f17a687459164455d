@@ -1,0 +1,66 @@
+<%-- <%@ page language="java" contenttype="text/html; charset=utf-8" pageencoding="utf-8"%>
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- latest compiled and minified css -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-bvyiisifek1dgmjrakycuhahrg32omucww7on3rydg4va+pmstsz/k68vbdejh4u" crossorigin="anonymous">
+<!-- optional theme -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rhyon1irsvxv4nd0jutlngaslcjuc7uwjduw9svrlvryoopp2bwygmgjqixwl/sp" crossorigin="anonymous">
+<!-- jquery (necessary for bootstrap's javascript plugins) -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<!-- latest compiled and minified javascript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-tc5iqib027qvyjsmfhjomalkfuwvxzxupncja7l2mcwnipg9mgcd8wgnicpd7txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="css/jumbotroncustom.css">
+<title>아이디 찾기 결과</title>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="main.jsp">게시판 프로젝트</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="main.jsp">메인</a></li>
+                    <li><a href="bbs.jsp">게시판</a></li>
+                    <li><a href="planner/planner.jsp">플래너</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">접속하기 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="login.jsp">로그인</a></li>
+                            <li><a href="register.jsp">회원가입</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h2>아이디 찾기 결과</h2>
+        <%
+            string userid = (string) request.getattribute("userid");
+            string errormessage = (string) request.getattribute("errormessage");
+
+            if (userid != null) {
+                out.println("<div class='alert alert-success'>");
+                out.println("회원님의 아이디는 <strong>" + userid + "</strong> 입니다.");
+                out.println("</div>");
+            } else if (errormessage != null) {
+                out.println("<div class='alert alert-danger'>");
+                out.println(errormessage);
+                out.println("</div>");
+            }
+        %>
+    </div>
+</body>
+</html> --%>

@@ -20,6 +20,12 @@
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
 				<a class="navbar-brand" href="main.jsp">게시판 프로젝트</a>
 			</div>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -34,8 +40,8 @@
 						<ul class="dropdown-menu">
 							<li><a href="login.jsp">로그인</a></li>
 							<li><a href="join.jsp">회원가입</a></li>
-							<li><a href="findID.jsp">아이디 찾기</a></li>
-							<li class="active"><a href="findPassword.jsp">비밀번호 찾기</a></li>
+<!-- 							<li><a href="findID.jsp">아이디 찾기</a></li>
+							<li class="active"><a href="findPassword.jsp">비밀번호 찾기</a></li> -->
 						</ul>
 					</li>
 				</ul>
@@ -49,10 +55,10 @@
 				<form method="post" action="findPasswordAction.jsp">
 					<h3 style="text-align: center;">비밀번호 찾기</h3>
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="아이디" name="userID" maxlength="20">
+						<input type="text" class="form-control" placeholder="아이디" id="userID" name="userID" required maxlength="20">
 					</div>
 					<div class="form-group">
-						<input type="email" class="form-control" placeholder="이메일" name="userEmail" maxlength="50">
+						<input type="email" class="form-control" placeholder="이메일" id="userEmail" name="userEmail" required maxlength="50">
 					</div>
 					<div>
 						<input type="submit" class="btn btn-primary form-control" value="비밀번호 찾기">

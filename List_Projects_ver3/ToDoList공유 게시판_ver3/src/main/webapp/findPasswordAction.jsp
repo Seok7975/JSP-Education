@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*, user.UserDAO" %>
 <!DOCTYPE html>
@@ -68,3 +68,27 @@
 	</div>
 </body>
 </html>
+ --%>
+ 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="user.UserDAO" %>
+
+<%
+    request.setCharacterEncoding("UTF-8");
+
+    String userID = request.getParameter("userID");
+    String userEmail = request.getParameter("userEmail");
+
+    UserDAO userDAO = new UserDAO();
+    String userPassword = userDAO.findUserPassword(userID, userEmail);
+
+    request.setAttribute("userPassword", userPassword);
+
+    if (userPassword != null) {
+        request.getRequestDispatcher("showUserPassword.jsp").forward(request, response);
+    } else {
+        request.setAttribute("errorMessage", "입력하신 정보와 일치하는 비밀번호가 없습니다.");
+        request.getRequestDispatcher("showUserPassword.jsp").forward(request, response);
+    }
+%>
+ 

@@ -1,0 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="user.UserDAO" %>
+<%
+	String userID = request.getParameter("userID");
+	UserDAO userDAO = new UserDAO();
+	boolean isExist = userDAO.isUserIdExist(userID);
+	String resultMessage = isExist ? "이미 사용중인 아이디입니다." : "사용가능한 아이디입니다.";
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>아이디 중복검사 결과</title>
+</head>
+<body>
+	<script>
+		alert("<%= resultMessage %>");
+		window.history.back();
+	</script>
+</body>
+</html>

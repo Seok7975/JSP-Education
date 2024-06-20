@@ -1,0 +1,29 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="user.UserDAO" %>
+<%
+    String userId = request.getParameter("userId");
+    String idCheckResult = "사용 가능한 아이디입니다.";
+
+    // 여기에 데이터베이스를 조회하여 ID 중복 여부를 확인하는 로직을 추가합니다.
+    // 예를 들어, 이미 존재하는 ID라면 idCheckResult를 "이미 사용 중인 아이디입니다."로 설정합니다.
+
+    // 예시:
+    // if (database.contains(userId)) {
+    //     idCheckResult = "이미 사용 중인 아이디입니다.";
+    // }
+
+    String password = request.getParameter("password");
+    String name = request.getParameter("name");
+    String gender = request.getParameter("gender");
+    String email = request.getParameter("email");
+
+    String redirectUrl = "join.jsp?idCheckResult=" + java.net.URLEncoder.encode(idCheckResult, "UTF-8")
+                        + "&userId=" + java.net.URLEncoder.encode(userId, "UTF-8")
+                        + "&password=" + java.net.URLEncoder.encode(password, "UTF-8")
+                        + "&name=" + java.net.URLEncoder.encode(name, "UTF-8")
+                        + "&gender=" + java.net.URLEncoder.encode(gender, "UTF-8")
+                        + "&email=" + java.net.URLEncoder.encode(email, "UTF-8");
+
+    response.sendRedirect(redirectUrl);
+%>

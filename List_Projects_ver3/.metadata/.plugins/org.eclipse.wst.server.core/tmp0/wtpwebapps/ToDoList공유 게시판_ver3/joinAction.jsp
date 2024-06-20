@@ -42,7 +42,7 @@
 		} else {
 			UserDAO userDAO = new UserDAO();
 			int result = userDAO.join(user);
-			if (result == -1) { // 동일안 아이디가 존재했을 경우
+			if (result == -1) { // 동일한 아이디가 존재했을 경우
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('이미 존재하는 아이디입니다.')");
